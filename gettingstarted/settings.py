@@ -20,12 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'assets'),)
 
-if not __debug__:
-    WEBPACK_LOADER['DEFAULT'].update(
-	{
-        'BUNDLE_DIR_NAME': 'dist/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json')
-    })
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -125,6 +120,13 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+if not __debug__:
+    WEBPACK_LOADER['DEFAULT'].update(
+	{
+        'BUNDLE_DIR_NAME': 'dist/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json')
+    })
 
 
 # Static files (CSS, JavaScript, Images)
