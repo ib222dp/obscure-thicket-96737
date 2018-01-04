@@ -4,7 +4,9 @@
   "description": "A barebones Django app, which can easily be deployed to Heroku.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"build": "webpack --config webpack.config.js --progress --colors",
+	"watch": "webpack --config webpack.config.js --watch"
   },
   "repository": {
     "type": "git",

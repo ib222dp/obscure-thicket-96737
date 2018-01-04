@@ -47,6 +47,13 @@ INSTALLED_APPS = [
     'hello'
 ]
 
+if not __debug__:
+    WEBPACK_LOADER['DEFAULT'].update(
+	{
+        'BUNDLE_DIR_NAME': 'dist/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json')
+    })
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -120,13 +127,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-if not __debug__:
-    WEBPACK_LOADER['DEFAULT'].update(
-	{
-        'BUNDLE_DIR_NAME': 'dist/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json')
-    })
 
 
 # Static files (CSS, JavaScript, Images)
