@@ -1,4 +1,13 @@
-var React = require('react')
-var App = require('./app')
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-React.render(<App/>, document.getElementById('react-app'))
+
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+const element = <Welcome name="world" />;
+ReactDOM.render(
+  element,
+  document.getElementById('react')
+);
