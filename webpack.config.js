@@ -18,15 +18,17 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/, query: { presets: [["env", {"modules": false}], "react", "stage-1"] } },
+      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/, query: { presets: [["env", {"modules": false}], "react", "stage-1"] } },
+	  { test: /\.css$/, loader: 'style-loader' },
+	  { test: /\.css$/, loader: 'css-loader' }
     ]
   },
 
   resolve: {
     modules: ['node_modules', 'bower_components'],
     extensions: ['.js', '.jsx']
-  },
+  }
 
 
 };

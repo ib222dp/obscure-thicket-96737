@@ -1,6 +1,7 @@
 {
   "name": "obscure-thicket-96737",
   "version": "1.0.0",
+  "proxy": "http://localhost:5000/",
   "description": "A barebones Django app, which can easily be deployed to Heroku.",
   "main": "index.js",
   "scripts": {
@@ -15,10 +16,27 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "bootstrap": "^4.0.0-beta.3",
+    "css-loader": "^0.28.8",
+    "history": "^4.7.2",
     "install": "^0.10.2",
+    "jquery": "^3.2.1",
+    "jwt-decode": "^2.2.0",
+    "popper.js": "^1.12.9",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "react-transition-group": "^1.2.1",
+    "reactstrap": "^5.0.0-alpha.4",
+    "redux": "^3.7.2",
+    "redux-api-middleware": "^2.0.1",
+    "redux-persist": "^5.4.0",
+    "redux-persist-transform-filter": "0.0.16",
+    "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
     "webpack-bundle-tracker": "^0.2.1"
-  }
+  },
+  "dependencies": {}
 }
