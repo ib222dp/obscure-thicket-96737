@@ -1,4 +1,5 @@
 from django.conf.urls import url, include
+from django.urls import path
 from django.views import generic
 from rest_framework import status, serializers, views
 from rest_framework.response import Response
@@ -8,8 +9,9 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from django.urls import path
 import hello.views
+from django.contrib import admin
+admin.autodiscover()
 
 class MessageSerializer(serializers.Serializer):
     message = serializers.CharField()
@@ -24,7 +26,10 @@ class EchoView(views.APIView):
 
 urlpatterns = [
     url(r'^$', hello.views.index, name='index'),
-    url(r'^api/$', get_schema_view()),
+	url(r'^login', hello.views.index, name='index'),
+	url(r'^db', hello.views.db, name='db'),
+	path('admin/', admin.site.urls),
+	url(r'^api/$', get_schema_view()),
     url(r'^api/auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/auth/token/obtain/$', TokenObtainPairView.as_view()),
     url(r'^api/auth/token/refresh/$', TokenRefreshView.as_view()),
@@ -32,21 +37,3 @@ urlpatterns = [
 ]
 
 # url(r'^$', generic.RedirectView.as_view(url='/api/', permanent=False)),
-
-# from django.conf.urls import include, url
-# from django.urls import path
-
-# from django.contrib import admin
-# admin.autodiscover()
-
-# import hello.views
-
-# # Examples:
-# # url(r'^$', 'gettingstarted.views.home', name='home'),
-# # url(r'^blog/', include('blog.urls')),
-
-# urlpatterns = [
-    # url(r'^$', hello.views.index, name='index'),
-    # url(r'^db', hello.views.db, name='db'),
-    # path('admin/', admin.site.urls),
-# ]
