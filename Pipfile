@@ -14,6 +14,7 @@ django-webpack-loader = "*"
 coreapi = "*"
 djangorestframework = "*"
 djangorestframework-simplejwt = "*"
+dj-database-url = "*"
 
 
 [requires]

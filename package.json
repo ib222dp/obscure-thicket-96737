@@ -1,7 +1,7 @@
 {
   "name": "obscure-thicket-96737",
   "version": "1.0.0",
-  "proxy": "http://localhost:5000/",
+  "proxy": "https://obscure-thicket-96737.herokuapp.com",
   "description": "A barebones Django app, which can easily be deployed to Heroku.",
   "main": "index.js",
   "scripts": {
