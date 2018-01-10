@@ -23,7 +23,6 @@ class EchoView(views.APIView):
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-
 urlpatterns = [
     url(r'^$', hello.views.index, name='index'),
 	url(r'^login', hello.views.index, name='index'),

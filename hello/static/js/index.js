@@ -4,8 +4,8 @@ import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import {Route, Switch} from 'react-router';
-
 import 'bootstrap/dist/css/bootstrap.css';
+
 import './index.css';
 import App from './App';
 import Login from './containers/Login';
