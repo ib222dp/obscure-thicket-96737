@@ -4,6 +4,12 @@ import { Alert, Button, Jumbotron,  Form } from 'reactstrap';
 import TextInput from './TextInput';
 
 export default class LoginForm extends Component {
+	constructor(props) {
+		super(props);
+		this.onSubmit = this.onSubmit.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
+	}    
+	
   state = {
     username: '',
     password: ''
@@ -25,8 +31,8 @@ export default class LoginForm extends Component {
   }
 
   onSubmit = (event) => {
-    event.preventDefault()
-    this.props.onSubmit(this.state.username, this.state.password)
+    event.preventDefault();
+    this.props.onSubmit(this.state.username, this.state.password);
   }
 
   render() {

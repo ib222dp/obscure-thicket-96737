@@ -5,8 +5,8 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import {Route, Switch} from 'react-router';
 
-import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import './index.css';
 import App from './App';
 import Login from './containers/Login';
 import PrivateRoute from './containers/PrivateRoute';

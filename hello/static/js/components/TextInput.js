@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, FormFeedback, Label, Input } from 'reactstrap';
 
-export default ({name, label, error, type, ...rest}) => {
+const TextInput = ({name, label, error, type, ...rest}) => {
 	const id = `id_${name}`,
 		input_type = type?type:"text"
   
@@ -13,3 +13,4 @@ export default ({name, label, error, type, ...rest}) => {
 		</FormGroup>
 	)
 }
+export default TextInput;
