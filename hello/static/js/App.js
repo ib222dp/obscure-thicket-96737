@@ -3,12 +3,20 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux'
 import { Button } from 'reactstrap';
 
-import {echo} from './actions/echo';
-import {serverMessage} from './reducers';
+import MessageForm from './containers/MessageForm';
+import {createdMessage} from './reducers';
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			visible: false,
+		};
+		this.toggleMessageForm = this.toggleMessageForm.bind(this);
+	}
+	
 	componentDidMount() {
-		this.props.fetchMessage('Hi!')
+		
 	}
 	
 	logoutHandler = () => {
@@ -17,19 +25,29 @@ class App extends Component {
 		window.location.href = window.location.href
     }
 	
+	toggleMessageForm = () => {
+		const { visible } = this.state;
+		this.setState({
+			visible: !visible,
+		});
+	}
+	
 	render() {
 		return (
-		  <div>
-			<h2>Welcome to React</h2>
-			<p>
-			  {this.props.message}
-			</p>
-			<Button type="button" color="primary" size="lg" onClick={this.logoutHandler}>Log Out</Button>
-		  </div>
+			<div>
+				<div>
+					<Button type="button" color="primary" size="lg" onClick={this.logoutHandler}>Logga ut</Button>
+					<Button type="button" color="primary" size="lg" onClick={this.toggleMessageForm}>Visa/dölj meddelandeformulär</Button>
+				</div>
+				<div>
+					{ this.state.visible && <MessageForm /> }
+					<p>
+						{this.props.message}
+					</p>
+				</div>
+			</div>
 		);
 	}
 }
 
-export default connect(
-	state => ({ message: serverMessage(state) }), { fetchMessage: echo }
-)(App);
+export default connect(state => ({ message: createdMessage(state) }))(App);

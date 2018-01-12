@@ -10,7 +10,7 @@ const Login = (props) => {
 	if(props.isAuthenticated) {
 		return  <Redirect to='/' />
 	}
-
+	
 	return (
 		<div className="login-page">
 		   <LoginForm {...props}/>

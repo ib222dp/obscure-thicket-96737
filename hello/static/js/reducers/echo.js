@@ -1,7 +1,7 @@
 import * as echo from '../actions/echo';
 
 const initialState = {
-  message: ""
+	message: ""
 }
 
 export default (state=initialState, action) => {

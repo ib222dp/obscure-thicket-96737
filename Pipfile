@@ -15,6 +15,7 @@ coreapi = "*"
 djangorestframework = "*"
 djangorestframework-simplejwt = "*"
 dj-database-url = "*"
+pyflakes = "*"
 
 
 [requires]
