@@ -38,6 +38,17 @@ export default class LoginForm extends Component {
 		});
 		
 		localStorage.setItem('username', value)
+		if(value === 'Anv1') {
+			localStorage.setItem('userid', '2')
+		} else if(value === 'Anv2') {
+			localStorage.setItem('userid', '3')
+		} else if(value === 'Anv3') {
+			localStorage.setItem('userid', '4')
+		} else if(value === 'Anv4') {
+			localStorage.setItem('userid', '5')
+		} else if(value === 'Anv5') {
+			localStorage.setItem('userid', '6')
+		}
 	}
 	
 	componentDidMount() {
@@ -55,11 +66,11 @@ export default class LoginForm extends Component {
 		return (
 			<Jumbotron className="container">
 				<Form onSubmit={this.onSubmit}>
-				  <h1>Authentication</h1>
+				  <h1>Autentisering</h1>
 				  {errors.non_field_errors?<Alert color="danger">{errors.non_field_errors}</Alert>:""}
-				  <TextInput name="username" label="Username" error={errors.username} innerRef={(input) => (this.primaryInput = input)} onChange={this.handleUsernameInputChange}/>
-				  <TextInput name="password" label="Password" error={errors.password} type="password" onChange={this.handlePasswordInputChange}/>
-				  <Button type="submit" color="primary" size="lg">Log In</Button>
+				  <TextInput name="username" label="Användarnamn" error={errors.username} innerRef={(input) => (this.primaryInput = input)} onChange={this.handleUsernameInputChange}/>
+				  <TextInput name="password" label="Lösenord" error={errors.password} type="password" onChange={this.handlePasswordInputChange}/>
+				  <Button type="submit" color="primary" size="lg">Logga in</Button>
 				</Form>
 			</Jumbotron>
 		)

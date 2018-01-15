@@ -8,9 +8,11 @@ export default class MessageForm extends Component {
 		this.toggle = this.toggle.bind(this);
 		this.select = this.select.bind(this);
 		this.state = {
+			loggedInUser: localStorage.getItem('username'),
 			dropdownOpen: false,
 			message: '',
-			recipient: 'Anv1'
+			recipient: 'Välj mottagare',
+			subject: ''
 		};
 	}
 
@@ -31,7 +33,7 @@ export default class MessageForm extends Component {
 	
 	onSubmit = (event) => {
 		event.preventDefault();
-		this.props.onSubmit(this.state.message, this.state.recipient, localStorage.getItem('username'));
+		this.props.onSubmit(this.state.message, this.state.recipient, this.state.subject, localStorage.getItem('userid'));
 	}
 	
 	toggle() {
@@ -43,7 +45,7 @@ export default class MessageForm extends Component {
 	select(event) {
 		this.setState({
 			dropdownOpen: !this.state.dropdownOpen,
-			recipient: event.target.innerText
+			recipient: event.target.getAttribute('id')
 		});
 	}
 	
@@ -55,18 +57,17 @@ export default class MessageForm extends Component {
 				<Form onSubmit={this.onSubmit}>
 					<h1>Skriv meddelande</h1>
 					{errors.non_field_errors?<Alert color="danger">{errors.non_field_errors}</Alert>:""}
-					<Container>
-						<ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-							<DropdownToggle>{this.state.recipient}</DropdownToggle>
-							<DropdownMenu>
-								<DropdownItem onClick={this.select}>Anv1</DropdownItem>
-								<DropdownItem onClick={this.select}>Anv2</DropdownItem>
-								<DropdownItem onClick={this.select}>Anv3</DropdownItem>
-								<DropdownItem onClick={this.select}>Anv4</DropdownItem>
-								<DropdownItem onClick={this.select}>Anv5</DropdownItem>
-							</DropdownMenu>
-						</ButtonDropdown>
-					</Container>
+					<ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+						<DropdownToggle>{this.state.recipient}</DropdownToggle>
+						<DropdownMenu>
+							<DropdownItem id='2' disabled={this.state.loggedInUser === 'Anv1'} onClick={this.select}>Anv1</DropdownItem>
+							<DropdownItem id='3' disabled={this.state.loggedInUser === 'Anv2'} onClick={this.select}>Anv2</DropdownItem>
+							<DropdownItem id='4' disabled={this.state.loggedInUser === 'Anv3'} onClick={this.select}>Anv3</DropdownItem>
+							<DropdownItem id='5' disabled={this.state.loggedInUser === 'Anv4'} onClick={this.select}>Anv4</DropdownItem>
+							<DropdownItem id='6' disabled={this.state.loggedInUser === 'Anv5'} onClick={this.select}>Anv5</DropdownItem>
+						</DropdownMenu>
+					</ButtonDropdown>
+					<TextInput name="subject" label="Ämne" error={errors.message} innerRef={(input) => (this.primaryInput = input)} onChange={this.handleInputChange}/>
 					<TextInput name="message" label="Meddelande" error={errors.message} type="textarea" innerRef={(input) => (this.primaryInput = input)} onChange={this.handleInputChange}/>
 					<Button type="submit" color="primary" size="lg">Skicka meddelande</Button>
 				</Form>

@@ -7,12 +7,14 @@ export const CREATEMESSAGE_FAILURE = '@@createmessage/CREATEMESSAGE_FAILURE';
 
 export const createmessage = (payload) => ({
 	[RSAA]: {
-		endpoint: '/api/echo/',
+		endpoint: '/api/message/post/',
 		method: 'POST',
 		body: JSON.stringify({
-			message: payload.message,
-			recipient: payload.recipient,
-			username: payload.username
+			messageText: payload.message,
+			recipientId: payload.recipient,
+			subject: payload.subject,
+			creatorId: payload.userid,
+			archived: payload.archived
 		}),
 		headers: withAuth({ 'Content-Type': 'application/json' }),
 		types: [

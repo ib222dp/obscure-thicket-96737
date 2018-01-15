@@ -17,8 +17,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-	onSubmit: (message, recipient, username) => {
-		dispatch(createmessage({message: message, recipient: recipient, username: username}))
+	onSubmit: (message, recipient, subject, userid) => {
+		dispatch(createmessage({message: message, recipient: recipient, subject: subject, userid: userid, archived: false}))
 	}
 })
 
