@@ -10,7 +10,7 @@
     "watch": "webpack --config webpack.config.js --watch"
   },
   "scriptsComments": {
-	"proxy": "http://localhost:5000/",
+	"proxy": "http://localhost:5000/"
   },
   "author": "",
   "license": "ISC",
