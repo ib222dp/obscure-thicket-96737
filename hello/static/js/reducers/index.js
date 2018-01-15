@@ -19,7 +19,7 @@ export const refreshToken = state => fromAuth.refreshToken(state.auth)
 export const isRefreshTokenExpired = state => fromAuth.isRefreshTokenExpired(state.auth)
 export const authErrors = state => fromAuth.errors(state.auth)
 export const createdMessage = state => fromCreatemessage.createdMessage(state.createmessage)
-export const fetchedMessages = state => fromFetchmessages.fetchedMessages(state.fetchmessages)
+export const threads = state => fromFetchmessages.threads(state.fetchmessages)
 
 export function withAuth(headers={}) {
 	return (state) => ({

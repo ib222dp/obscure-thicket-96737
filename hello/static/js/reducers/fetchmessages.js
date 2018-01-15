@@ -1,11 +1,7 @@
 import * as fetchmessages from '../actions/fetchmessages';
 
 const initialState = {
-	createdMessages: [],
-	createdThreads: [],
-	receivedMessages: [],
-	receivedThreads: [],
-	messages: [],
+	threads: [],
 	errors: {}
 }
 
@@ -13,11 +9,7 @@ export default (state=initialState, action) => {
 	switch(action.type) {
 		case fetchmessages.FETCHMESSAGES_SUCCESS:
 			return {
-				messages: [...action.payload.createdMessages,
-					 ...action.payload.createdThreads,
-					...action.payload.receivedMessages,
-					...action.payload.receivedThreads
-				]
+					threads: [...action.payload.createdThreads, ...action.payload.receivedThreads]
 			}
 		case fetchmessages.FETCHMESSAGES_FAILURE:
 			return {
@@ -28,4 +20,4 @@ export default (state=initialState, action) => {
 	}
 }
 
-export const fetchedMessages = (state) => state.messages
+export const threads = (state) => state.threads

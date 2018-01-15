@@ -9,7 +9,7 @@ export default (state=initialState, action) => {
 	switch(action.type) {
 		case createmessage.CREATEMESSAGE_SUCCESS:
 			return {
-				message: action.payload.messageText
+				message: 'Meddelande skapat'
 			}
 		case createmessage.CREATEMESSAGE_FAILURE:
 			return {

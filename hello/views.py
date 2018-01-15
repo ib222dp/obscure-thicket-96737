@@ -1,6 +1,4 @@
-##import requests
 from django.shortcuts import render
-##from django.http import HttpResponse
 from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.response import Response
@@ -21,17 +19,18 @@ class Message(APIView):
         u = User.objects.get(pk=pk)
         createdThreads = u.threadcreator_user_set.values('id', 'creatorId', 'recipientId', 'subject', 'archived')
         receivedThreads = u.threadrecipient_user_set.values('id', 'creatorId', 'recipientId', 'subject', 'archived')
-        createdMessages = []
-        receivedMessages = []
 
         for ct in createdThreads:
+            createdMessages = []
+            ct['messages'] = createdMessages
             createdMessages.extend(MessageModel.objects.filter(thread=ct['id']).values('id', 'thread', 'creatorId', 'recipientId','creationDate', 'messageText'))
 
         for rt in receivedThreads:
+            receivedMessages = []
+            rt['messages'] = receivedMessages
             receivedMessages.extend(MessageModel.objects.filter(thread=rt['id']).values('id', 'thread', 'creatorId', 'recipientId','creationDate', 'messageText'))
-
-        return JsonResponse({'createdThreads': list(createdThreads), 'receivedThreads': list(receivedThreads),
-                             'createdMessages': list(createdMessages), 'receivedMessages': list(receivedMessages)})
+            
+            return JsonResponse({'createdThreads': list(createdThreads), 'receivedThreads': list(receivedThreads)}, content_type='application/json')
 
         
     def post(self, request, *args, **kwargs):
@@ -48,7 +47,7 @@ class Message(APIView):
             
             if messageSerializer.is_valid(raise_exception=True):
                 messageSerializer.save()
-                return Response(messageSerializer.data, status=status.HTTP_201_CREATED)
+                return Response(status=status.HTTP_201_CREATED)
             return Response(messageSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         return Response(threadSerializer.errors, status=status.HTTP_400_BAD_REQUEST)

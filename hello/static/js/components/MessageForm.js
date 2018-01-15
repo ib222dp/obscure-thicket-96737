@@ -11,8 +11,9 @@ export default class MessageForm extends Component {
 			loggedInUser: localStorage.getItem('username'),
 			dropdownOpen: false,
 			message: '',
-			recipient: 'Välj mottagare',
-			subject: ''
+			recipient: '',
+			subject: '',
+			recipientName: 'Välj mottagare'
 		};
 	}
 
@@ -45,7 +46,8 @@ export default class MessageForm extends Component {
 	select(event) {
 		this.setState({
 			dropdownOpen: !this.state.dropdownOpen,
-			recipient: event.target.getAttribute('id')
+			recipient: event.target.getAttribute('id'),
+			recipientName: event.target.value
 		});
 	}
 	
@@ -58,13 +60,13 @@ export default class MessageForm extends Component {
 					<h1>Skriv meddelande</h1>
 					{errors.non_field_errors?<Alert color="danger">{errors.non_field_errors}</Alert>:""}
 					<ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-						<DropdownToggle>{this.state.recipient}</DropdownToggle>
+						<DropdownToggle>{this.state.recipientName}</DropdownToggle>
 						<DropdownMenu>
-							<DropdownItem id='2' disabled={this.state.loggedInUser === 'Anv1'} onClick={this.select}>Anv1</DropdownItem>
-							<DropdownItem id='3' disabled={this.state.loggedInUser === 'Anv2'} onClick={this.select}>Anv2</DropdownItem>
-							<DropdownItem id='4' disabled={this.state.loggedInUser === 'Anv3'} onClick={this.select}>Anv3</DropdownItem>
-							<DropdownItem id='5' disabled={this.state.loggedInUser === 'Anv4'} onClick={this.select}>Anv4</DropdownItem>
-							<DropdownItem id='6' disabled={this.state.loggedInUser === 'Anv5'} onClick={this.select}>Anv5</DropdownItem>
+							<DropdownItem id='2' value='Anv1' disabled={this.state.loggedInUser === 'Anv1'} onClick={this.select}>Anv1</DropdownItem>
+							<DropdownItem id='3' value='Anv2' disabled={this.state.loggedInUser === 'Anv2'} onClick={this.select}>Anv2</DropdownItem>
+							<DropdownItem id='4' value='Anv3' disabled={this.state.loggedInUser === 'Anv3'} onClick={this.select}>Anv3</DropdownItem>
+							<DropdownItem id='5' value='Anv4' disabled={this.state.loggedInUser === 'Anv4'} onClick={this.select}>Anv4</DropdownItem>
+							<DropdownItem id='6' value='Anv5' disabled={this.state.loggedInUser === 'Anv5'} onClick={this.select}>Anv5</DropdownItem>
 						</DropdownMenu>
 					</ButtonDropdown>
 					<TextInput name="subject" label="Ämne" error={errors.message} innerRef={(input) => (this.primaryInput = input)} onChange={this.handleInputChange}/>

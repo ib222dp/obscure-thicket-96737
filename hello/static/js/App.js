@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux'
-import { Button, Container, Row, Col } from 'reactstrap';
+import { Button, Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
 
 import Message from './containers/MessageForm';
 import GetMessages from './containers/GetMessagesButton';
-import {fetchedMessages} from './reducers';
+import {createdMessage} from './reducers';
+import {threads} from './reducers';
 
 class App extends Component {
 	constructor(props) {
@@ -46,7 +47,36 @@ class App extends Component {
 					</Row>
 					<Row>
 					<Col>
-						{ this.state.visible && <Message /> }
+						{ this.state.visible && <Message createdMessage={this.props.createdMessage}/> }
+					</Col>
+					<Col>
+						<ListGroup>
+							{this.props.threads.map((thread) =>
+								<ListGroupItem key={thread.id}>
+									<p><strong>Från: </strong>
+										{thread.creatorId == localStorage.getItem('userid') ? 
+											localStorage.getItem('username') : thread.creatorId
+										}
+									</p>
+									<p><strong>Till: </strong>
+										{thread.recipientId == localStorage.getItem('userid') ? 
+											localStorage.getItem('username') : thread.recipientId
+										}
+									</p>
+									<p><strong>Ämne: </strong>
+										{thread.subject}
+									</p>
+									{thread.messages !== undefined && thread.messages.length > 0 && 
+									<p><strong>Meddelande: </strong>
+										{thread.messages[0].messageText}
+									</p>}
+									{thread.messages !== undefined && thread.messages.length > 0 && 
+									<p><strong>Skapat: </strong>
+										{thread.messages[0].creationDate}
+									</p>}
+								</ListGroupItem>
+							)}
+						</ListGroup>
 					</Col>
 					</Row>
 				</Container>
@@ -55,4 +85,8 @@ class App extends Component {
 	}
 }
 
-export default connect(state => ({ fetchedMessages: fetchedMessages(state) }) )(App);
+export default connect(
+state => ({ 
+			threads: threads(state),
+			createdMessage: createdMessage(state)
+		}) )(App);
