@@ -30,7 +30,7 @@ class Message(APIView):
             rt['messages'] = receivedMessages
             receivedMessages.extend(MessageModel.objects.filter(thread=rt['id']).values('id', 'thread', 'creatorId', 'recipientId','creationDate', 'messageText'))
             
-            return JsonResponse({'createdThreads': list(createdThreads), 'receivedThreads': list(receivedThreads)}, content_type='application/json')
+        return JsonResponse({'createdThreads': list(createdThreads), 'receivedThreads': list(receivedThreads)}, content_type='application/json')
 
         
     def post(self, request, *args, **kwargs):
